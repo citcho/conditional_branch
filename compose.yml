@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    platform: linux/x86_64
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html
+      - ./apache2.conf:/etc/apache2/apache2.conf
+    ports:
+      - 9000:80
+
+  db:
+    image: mysql:8
+    platform: linux/x86_64
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=cb
+      - LANG=C.UTF-8
+    volumes:
+      - db:/var/lib/mysql
+    command: mysqld --sql-mode=NO_ENGINE_SUBSTITUTION --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+volumes:
+  db:
