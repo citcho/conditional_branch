@@ -18,7 +18,7 @@ down: ## コンテナ停止
 
 .PHONY: clean
 clean: ## クリーンアップ
-	docker-compose down --rmi all --volumes --remove-orphans
+	docker compose down --rmi all --volumes --remove-orphans
 
 .PHONY: exec
 exec: ## コンテナ接続
@@ -31,14 +31,6 @@ logs: ## コンテナログ表示
 .PHONY: ps
 ps: ## コンテナステータス表示
 	docker compose ps
-
-.PHONY: migrate
-migrate: ## マイグレーション
-	docker compose exec app php artisan db:migrate
-
-.PHONY: seed
-seed: ## シーディング
-	docker compose exec app php artisan db:seed
 
 .PHONY: help
 help: ## ヘルプ表示
