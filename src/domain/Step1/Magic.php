@@ -7,7 +7,6 @@ namespace Domain\Step1;
 final class Magic
 {
     public function __construct(
-        private string $id,
         private string $name,
         private int $costMagicPoint,
     ) {

@@ -11,8 +11,8 @@ final class Step1Controller extends Controller
 {
     public function __invoke()
     {
-        $member = new Member('1', 'John Doe');
-        $magic = new Magic('1', 'Fireball', 10);
+        $member = new Member('Sora');
+        $magic = new Magic('サンダガ', 20);
 
         // 生存しているか確認
         if (0 < $member->hitPoint()) {
@@ -22,8 +22,14 @@ final class Step1Controller extends Controller
                 if ($magic->costMagicPoint() <= $member->magicPoint()) {
                     $member->consumeMagicPoint($magic->costMagicPoint());
                     $member->chant($magic);
+                } else {
+                    echo $member->name() . ' は魔法を使う力がない...';
                 }
+            } else {
+                echo $member->name() . ' は行動できない...';
             }
+        } else {
+            echo $member->name() . ' は力尽きている...';
         }
     }
 }

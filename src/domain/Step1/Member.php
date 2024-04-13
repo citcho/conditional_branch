@@ -7,11 +7,15 @@ namespace Domain\Step1;
 final class Member
 {
     public function __construct(
-        private string $id,
         private string $name,
         private int $hitPoint = 100,
         private int $magicPoint = 100
     ) {
+    }
+
+    public function name(): string
+    {
+        return $this->name;
     }
 
     public function hitPoint(): int
