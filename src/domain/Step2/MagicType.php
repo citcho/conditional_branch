@@ -6,7 +6,7 @@ namespace Domain\Step2;
 
 enum MagicType
 {
-    case FIRE;
-    case BLIZZARD;
-    case THUNDER;
+    case Blizzard;
+    case Fire;
+    case Thunder;
 }
