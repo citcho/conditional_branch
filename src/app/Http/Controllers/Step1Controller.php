@@ -15,21 +15,22 @@ final class Step1Controller extends Controller
         $magic = new Magic('サンダガ', 20);
 
         // 生存しているか確認
-        if (0 < $member->hitPoint()) {
-            // 行動可能か確認
-            if ($member->canAct()) {
-                // 魔法力が残存しているかを確認
-                if ($magic->costMagicPoint() <= $member->magicPoint()) {
-                    $member->consumeMagicPoint($magic->costMagicPoint());
-                    $member->chant($magic);
-                } else {
-                    echo $member->name() . ' は魔法を使う力がない...';
-                }
-            } else {
-                echo $member->name() . ' は行動できない...';
-            }
-        } else {
+        if (0 > $member->hitPoint()) {
             echo $member->name() . ' は力尽きている...';
+            return;
         }
+        // 行動可能か確認
+        if (!$member->canAct()) {
+            echo $member->name() . ' は行動できない...';
+            return;
+        }
+        // 魔法力が残存しているかを確認
+        if ($magic->costMagicPoint() > $member->magicPoint()) {
+            echo $member->name() . ' は魔法を使う力がない...';
+            return;
+        }
+
+        $member->consumeMagicPoint($magic->costMagicPoint());
+        $member->chant($magic);
     }
 }
