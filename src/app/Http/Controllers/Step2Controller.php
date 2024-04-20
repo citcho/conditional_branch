@@ -9,7 +9,6 @@ use Domain\Step2\Fire;
 use Domain\Step2\MagicType;
 use Domain\Step2\Member;
 use Domain\Step2\Thunder;
-use FFI;
 
 class Step2Controller extends Controller
 {
